@@ -1,0 +1,35 @@
+# Here is the my method 
+
+
+First of all, think if any index j, for that position (while c[i] != 1) the paths can be come from i-1 or i-2.
+Then I implemented the dynamic programming approach.
+Player must start with zero index. So I created an array with infinite values and it's 0th index value is zero.
+ex = [0, 0, 1, 0, 0, 1, 0]
+inf_arr = [0, inf, inf, inf, inf, inf, inf]
+
+we must star our array with index 1.
+
+Then I check the both conditions. I check if i>= 1 or i>= 2. If those conditions becomes true, for i>=2 case, I replace the inf_arr ith value with the minimum value of the inf_arr[i] and inf_arr[i-1]
++1. Why I use the last element + 1 (inf_arr[i-1]+1)? Because I want to get the minimum value for the end of the inf_arr.
+Same process for i>=2.
+
+Finally I return the last value of the inf_arr
+####################################################################################################
+
+# Algorithm
+
+
+
+Function Jumping_clouds(C):
+    Inf_arr = ["INF"]*length(C)
+    Inf_arr[0] = 0
+
+    for (int i = 1, i < length(C), i++):
+        if C[i] == 0:
+            if i>= 1:
+                inf_arr[i] = min(inf_arr[i], inf_arr[i-1]+1)
+            if i>=2:
+                inf_arr[i] = min(inf_arr[i], inf_arr[i-2]+1)
+    return inf_arr[-1]
+
+####################################################################################################
